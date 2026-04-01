@@ -10,7 +10,7 @@ from email.message import EmailMessage
 
 #Load Data
 this_dir = Path(__file__).parent if '__file__' in locals() else Path.cwd()
-wb_file_path = this_dir / 'vital_log_2026-03-13_21-20-51.csv'
+wb_file_path = this_dir / 'vital_log_2026-03-13_21-20-51.csv' #example log replace with desired data
 data = pd.read_csv(wb_file_path)
 
 # Clean columns 
@@ -55,8 +55,8 @@ def send_email(state):
 
     msg = EmailMessage()
     msg["Subject"] = "Vital Sign Report"
-    msg["From"] = "VI.Waveinc@gmail.com"
-    msg["To"] = "kjraw01@gmail.com"
+    msg["From"] = "sending_email@email.com" #replace
+    msg["To"] = "recieving_email@email.com" #replace
     msg.set_content("Attached are your vital sign graphs.")
 
     for file in ["heart_rate.png", "breath_rate.png"]:
@@ -69,7 +69,7 @@ def send_email(state):
             )
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-        smtp.login("VI.Waveinc@gmail.com", "jcamaxdrfjijejwn")
+        smtp.login("your_email@email.com", "password") #replace email and password 
         smtp.send_message(msg)
 
 
